@@ -1,0 +1,5 @@
+# ninja log v5
+18	51	7518974887875679	CMakeFiles/lab1.dir/func.cpp.obj	927929e703dd625c
+10	496	7518974892320816	CMakeFiles/lab1.dir/Polynom.cpp.obj	827cdfe49b48b2a3
+3	550	7518974892777852	CMakeFiles/lab1.dir/main.cpp.obj	438fd1a237418749
+550	774	7518974894998943	lab1.exe	ca00dcee7ef957aa
