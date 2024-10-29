@@ -33,3 +33,26 @@ Polynom<T>::Polynom(T *vector, const size_t vsize) {
 	}
 
 }
+
+template<class T>
+T& Polynom<T> :: operator[](size_t idx) {
+	if (idx < 0 || idx > _size) {
+		throw std::logic_error("Idx out of range");
+	}
+	else {
+		return _coef[idx];
+	}
+}
+
+template<class T>
+void Polynom<T> :: set(const T elm, const size_t idx) {
+	if (idx < 0 || idx > _size) {
+		throw std::logic_error("Idx out of range");
+	}
+	else {
+		_coef[idx] = elm;
+	}
+}
+
+
+
