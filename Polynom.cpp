@@ -10,10 +10,7 @@ Polynom<T>::Polynom(const size_t max_degree) {
 	else {
 		T* vector = new T[max_degree + 1](T{});
 		_coef = vector;
-		_size = max_degree;
-		for (size_t idx = 0; idx <= max_degree; ++idx) {
-			std::cout << _coef[idx] << '\n';
-		}
+		_size = max_degree + 1;
 	}
 }
 
@@ -28,7 +25,6 @@ Polynom<T>::Polynom(T *vector, const size_t vsize) {
 		_size = vsize;
 		for (size_t idx = 0; idx < vsize; ++idx) {
 			_coef[idx] = vector[idx];
-			std::cout << _coef[idx] << '\n';
 		}
 	}
 
@@ -55,4 +51,59 @@ void Polynom<T> :: set(const T elm, const size_t idx) {
 }
 
 
+template<class T>
+size_t Polynom<T> :: get_size() {
+	return _size;
+}
+
+
+template<class T>
+Polynom<T>& Polynom<T> :: operator+=(Polynom<T>& first) {
+	size_t max_size = (_size > first.get_size()) ? _size : first.get_size();
+	T* newcoef = new T[max_size](T{});
+	T c1;
+	T c2;
+	for (size_t idx = 0; idx < max_size; ++idx) {
+		c1 = (idx >= _size) ? T{} : _coef[idx];
+		c2 = (idx >= first.get_size()) ? T{} : first[idx];
+		newcoef[idx] = c1 + c2;
+	}
+	delete[] _coef;
+	_coef = newcoef;
+	_size = max_size;
+	return *this;
+}
+
+template<class T>
+Polynom<T>& Polynom<T> :: operator-=(Polynom<T>& first) {
+	size_t max_size = (_size > first.get_size()) ? _size : first.get_size();
+	T* newcoef = new T[max_size](T{});
+	T c1;
+	T c2;
+	for (size_t idx = 0; idx < max_size; ++idx) {
+		c1 = (idx >= _size) ? T{} : _coef[idx];
+		c2 = (idx >= first.get_size()) ? T{} : first[idx];
+		newcoef[idx] = c1 - c2;
+	}
+	delete[] _coef;
+	_coef = newcoef;
+	_size = max_size;
+	return *this;
+}
+
+template<class T>
+Polynom<T>& operator+(Polynom<T>& first, Polynom<T>& second) {
+	Polynom<T> sumpoly(1);
+	sumpoly += first;
+	sumpoly += second;
+	return sumpoly;
+}
+
+template<class T>
+Polynom<T>& operator-(Polynom<T>& first, Polynom<T>& second) {
+	Polynom<T> sumpoly(1);
+	first-=second;
+	sumpoly += first;
+	return sumpoly;
+}
 

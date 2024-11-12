@@ -2,12 +2,28 @@
 #include "complex"
 
 int main() {
-	Polynom<std::complex<double>> first(5);
-	std::complex<double> array[] = { 1,4,6 };
+	Polynom<std::complex<int>> first(5);
+	std::complex<int> array[] = { 1,4,6 };
 	std::cout << "Second" << '\n';
-	Polynom<std::complex<double>> second(array, 3);
-	std::cout << "take elm by idx:" << '\n' << second[2]<<'\n';
-	second.set(1, 60);
-	std::cout << "set elm by idx:" << '\n' << second[2] << '\n';
+	Polynom<std::complex<int>> second(array, 3);
+	first -= second;
+	for (int i = 0; i < first.get_size(); ++i) {
+
+
+		std::cout << first[i] << '\n';
+	}
+	std::cout << "len first: " << first.get_size() << '\n';
+	
+
+	Polynom<std::complex<int>> sum(3);
+	sum = first - second;
+	std::cout << "Sum" << '\n';
+	for (int i = 0; i < first.get_size(); ++i) {
+
+
+		std::cout << sum[i] << '\n';
+	}
+
+
 	return 0;
 }
