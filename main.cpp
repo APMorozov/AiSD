@@ -37,12 +37,13 @@ int main() {
 
 	//std::cout << "Value" << std::complex<int>(1) << '\n';
 
-	std::complex<double> arr[] = { 2, -3 , 1 };
-	Polynom<std::complex<double>> poly(arr, 3);
-	std::complex<double>* answ;
+	double arr[] = { 2, 6 , 1 };
+	Polynom<double> poly(arr, 3);
+	double* answ;
 	answ = find_root(poly);
 	std::cout << answ[0] << '\n';
 	std::cout << answ[1] << '\n';
+	std::cout << "Compute pole " << '\n' << poly.compute_polynom(answ[1]) << '\n';
 	std::cout << "Test " << 4 / 2 << '\n';
 	
 

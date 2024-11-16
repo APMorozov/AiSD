@@ -9,6 +9,10 @@ public:
 
 	Polynom(T *vector, const size_t vsize);
 
+	~Polynom();
+
+	Polynom(Polynom<T>&) = delete;
+
 	T& operator[](size_t idx);
 
 	void set(const T elm, const size_t idx);
