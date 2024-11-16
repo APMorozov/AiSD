@@ -1,7 +1,5 @@
 #include <stdexcept>
 template<class T>
-
-
 class Polynom {
 private:
 	T* _coef;
@@ -21,6 +19,13 @@ public:
 
 	Polynom& operator-=(Polynom<T>& first);
 
+	Polynom& operator*=(T scalar);
+
+	void shrink_to_fit();
+
+	void expend(int size);
+
+	T compute_polynom(T x);
 
 };
 
@@ -29,3 +34,9 @@ template<class T>
 Polynom<T>& operator+(Polynom<T>& first, Polynom<T>& second);
 template<class T>
 Polynom<T>& operator-(Polynom<T>& first, Polynom<T>& second);
+template<class T>
+Polynom<T>& operator*(T scalar, Polynom<T>& item);
+template<class T>
+Polynom<T>& operator*(Polynom<T>& item, T scalar);
+template<class T>
+std::ostream& operator<<(Polynom<T>& item, std::ostream& stream);

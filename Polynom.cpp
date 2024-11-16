@@ -107,3 +107,80 @@ Polynom<T>& operator-(Polynom<T>& first, Polynom<T>& second) {
 	return sumpoly;
 }
 
+template<class T>
+Polynom<T>& Polynom<T> :: operator*=(T scalar) {
+	for (size_t idx = 0; idx < _size; ++idx) {
+		_coef[idx] *= scalar;
+	}
+	return *this;
+}
+
+template<class T>
+Polynom<T>& operator*(T scalar, Polynom<T>& item) {
+	item *= scalar;
+	return item;
+}
+
+template<class T>
+Polynom<T>& operator*(Polynom<T>& item, T scalar) {
+	item *= scalar;
+	return item;
+}
+
+template<class T>
+void Polynom<T> ::shrink_to_fit() {
+	size_t idx = 0;
+	while (_coef[idx] == T(0)) {
+		++idx;
+	}
+	if (idx == _size) {
+		throw std::logic_error("Polynom have only empty elm");
+	}
+	std::cout << "LEN zeros " << idx << '\n';
+	if (idx != 0) {
+		size_t i2 = 0;
+		T* newcoef = new T[_size - idx](T{});
+		for (size_t i = idx; i < _size; ++i) {
+			newcoef[i2] = _coef[i];
+			++i2;
+		}
+		_size = _size - idx;
+		delete[] _coef;
+		_coef = newcoef;
+	}
+}
+
+
+template<class T>
+void Polynom<T> :: expend(int size){
+	if (size <= _size) {
+		throw std::logic_error("Can`t expend, sizes ara Equal");
+	}
+	T* newcoef = new T[size](T{});
+	for (size_t idx = 0; idx < _size; ++idx) {
+		newcoef[idx] = _coef[idx];
+	}
+	delete[] _coef;
+	_coef = newcoef;
+	_size = size;
+}
+
+template<class T>
+std::ostream& operator<<(std::ostream& stream, Polynom<T>& item) {
+	for (size_t idx = 0; idx < item.get_size(); ++idx) {
+		stream << item[idx] << ' ';
+	}
+	return stream;
+}
+
+template<class T>
+T Polynom<T> :: compute_polynom(T x) {
+	T result{};
+	std::cout << "result " << result << '\n';
+	for (size_t idx = 0; idx < _size; ++idx) {
+		result += _coef[idx] * T(pow(x, idx));
+	}
+	return result;
+}
+
+
