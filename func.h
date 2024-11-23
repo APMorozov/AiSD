@@ -1,7 +1,7 @@
 #pragma once
 #include "Polynom.cpp"
-#include "complex"
-#include "func.h"
+#include <complex>
+
 
 template<class T>
 T* find_root(Polynom<T>& item) {
@@ -16,16 +16,10 @@ T* find_root(Polynom<T>& item) {
 	}
 	else {
 		T discriminant = pow(item[1], 2) - (4 * item[2] * item[0]);
-		std::cout << "B^2 " << pow(item[1], 2) << '\n';
-		std::cout << "4AC " << (4 * item[2] * item[0]) << '\n';
 		if (discriminant > 0) {
-			std::cout << "sup " << discriminant << '\n';
 			T x1 = (0 - item[1] + sqrt(discriminant)) / (2 * item[2]);
 			T x2 = (0 - item[1] - sqrt(discriminant)) / (2 * item[2]);
-			std::cout << "x1 " << x1 << '\n';
 
-			std::cout << "x1 " << x1 << "\n";
-			std::cout << "x2 " << x2 << "\n";
 			answer[0] = x1;
 			answer[1] = x2;
 			return answer;
@@ -55,8 +49,6 @@ std::complex<double>* find_root(Polynom<std::complex<double>>& item) {
 	}
 	else {
 		std::complex<double> discriminant = pow(item[1], 2) - (std::complex<double>(4) * item[2] * item[0]);
-		std::cout << "B^2 " << pow(item[1], 2) << '\n';
-		std::cout << "4AC " << (std::complex<double>(4) * item[2] * item[0]) << '\n';
 		std::complex<double> x1 = (std::complex<double>(0) - item[1] + sqrt(discriminant)) / (std::complex<double>(2) * item[2]);
 		std::complex<double> x2 = (std::complex<double>(0) - item[1] - sqrt(discriminant)) / (std::complex<double>(2) * item[2]);
 		answer[0] = x1;
@@ -78,8 +70,6 @@ std::complex<float>* find_root(Polynom<std::complex<float>>& item) {
 	}
 	else {
 		std::complex<float> discriminant = (item[1] * item[1]) - (std::complex<float>(4) * item[2] * item[0]);
-		std::cout << "B^2 " << pow(item[1], 2) << '\n';
-		std::cout << "4AC " << (std::complex<float>(4) * item[2] * item[0]) << '\n';
 		std::complex<float> x1 = (std::complex<float>(0) - item[1] + sqrt(discriminant)) / (std::complex<float>(2) * item[2]);
 		std::complex<float> x2 = (std::complex<float>(0) - item[1] - sqrt(discriminant)) / (std::complex<float>(2) * item[2]);
 		answer[0] = x1;
@@ -101,9 +91,6 @@ std::complex<int>* find_root(Polynom<std::complex<int>>& item) {
 	}
 	else {
 		std::complex<int> discriminant = (item[1] * item[1]) - (std::complex<int>(4) * item[2] * item[0]);
-		std::cout << "B^2 " << pow(item[1], 2) << '\n';
-		std::cout << "4AC " << (std::complex<int>(4) * item[2] * item[0]) << '\n';
-		std::cout << "sqrt disc" << sqrt(discriminant) << '\n';
 		std::complex<int> x1 = (std::complex<int>(0) - item[1] + sqrt(discriminant)) / (std::complex<int>(2) * item[2]);
 		std::complex<int> x2 = (std::complex<int>(0) - item[1] - sqrt(discriminant)) / (std::complex<int>(2) * item[2]);
 		answer[0] = x1;
