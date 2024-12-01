@@ -16,8 +16,18 @@ private:
 public:
 	Node<T>* get_head() const noexcept;
 	LinkedList();
+	~LinkedList();
 	LinkedList(const LinkedList<T>& elm);
 	void push_tail(Node<T>& elm);
+	void push_tail(LinkedList<T>& elm);
+	void push_head(Node<T>& elm);
+	void push_head(LinkedList<T>& elm);
+	void pop_tail();
+	void pop_head();
+	void delete_node(Node<T>& del_elm);
+	void set_by_idx(Node<T>& elm, size_t idx);
+	Node<T>& get_by_idx(size_t idx);
+	LinkedList<T>& operator=(const LinkedList<T>& elm);
 };
 
 template<class T>
