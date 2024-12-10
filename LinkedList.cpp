@@ -1,9 +1,20 @@
 #include "LinkedList.h"
 #include <stdexcept>
+#include <string> 
+#include <windows.h>
+#include <fstream>
+#include <locale>
+#include <codecvt>
+#include <cstdlib>
+#include <io.h>
+#include <fcntl.h>
+#include <cstdlib>
+
 template<class T>
 LinkedList<T> :: LinkedList() {
 	_head = nullptr;
 }
+
 
 template<class T>
 LinkedList<T> ::LinkedList(const LinkedList<T>& elm) {
@@ -198,16 +209,38 @@ Node<T>* LinkedList<T> :: get_head() const noexcept{
 	return _head;
 }
 
+
 template<class T>
-std::ostream& operator<<(std::ostream& stream, const LinkedList<T>& elm) {
-	Node<T>* next = elm.get_head();
-	if (next != nullptr) {
-		stream << next->data << " ";
+void LinkedList<T>::open_file() {
+	std::string path;
+	Node<T>* next = this->_head;
+	while (next != nullptr) {
+		path += next->data;
 		next = next->pnext;
+		if (next != nullptr) {
+			path += '\\';
+		}
 	}
-	while ((next != nullptr) && (next != elm.get_head())) {
-		stream << next -> data << " ";
-		next = next -> pnext;
+	std::locale utf8_locale = std::locale(std::locale(), new std::codecvt_utf8<char>());
+	std::ifstream infile(path);
+
+	infile.imbue(utf8_locale);
+
+	if (!infile) {
+		std::cerr << "Cant open file!" << std::endl;
 	}
-	return stream;
+	else
+	{
+		std::string line;
+		while (std::getline(infile, line)) {
+			std::cout << line << std::endl;
+		}
+
+		infile.close();
+	
+	}
 }
+
+
+
+
