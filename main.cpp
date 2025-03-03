@@ -1,10 +1,10 @@
-#include "Polynom.cpp"
-#include "complex"
+#include "iostream"
+#include "Binnary_Tree.cpp"
 
-int main() {
-	Polynom<std::complex<double>> first(5);
-	std::complex<double> array[] = { 1,4,6 };
-	std::cout << "Second" << '\n';
-	Polynom<std::complex<double>> second(array, 3);
-	return 0;
+int main(){
+	Binnary_Tree<int> Tree(23);
+	std::cout << "Hello World" << '\n';
+	Tree.insert(34);
+	Tree.insert(55);
+	Tree.print();
 }
