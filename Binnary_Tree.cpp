@@ -220,7 +220,7 @@ Tree_Node<T>* Binnary_Tree<T> ::balanceNode(Tree_Node<T>* root) {
 	}
 	int balanceFactor = getBalanceFactor(root);
 	if (balanceFactor > 1) {
-		if (getHeight(root->LeftBranch->LeftBranch) >= getHeight(root->LeftBranch->RightBranch){
+		if (getHeight(root->LeftBranch->LeftBranch) >= getHeight(root->LeftBranch->RightBranch)){
 			root = rotateRight(root);
 		}
 		else {
