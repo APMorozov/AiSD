@@ -247,5 +247,90 @@ void Binnary_Tree<T>::balanceTree() {
 }
 
 
+template<class T>
+size_t Binnary_Tree<T> :: getCount(Tree_Node<T>* root, T value) {
+	if (root == nullptr) {
+		return 0;
+	}
+	if (value == root->data){
+		return root->duplicates_count + 1;
+	}
+	if (value < root->data) {
+		return getCount(root->LeftBranch, value);
+	}
+	if (value > root->data) {
+		return getCount(root->RightBranch, value);
+	}
+}
+
+template<class T>
+size_t Binnary_Tree<T> ::count(T value) {
+	return getCount(_root, value);
+}
 
 
+template<class T>
+T& Binnary_Tree<T>::iterator::operator*() {
+	return _current->data;
+}
+
+template<class T>
+T* Binnary_Tree<T>::iterator::operator->() {
+	return&_current->data;
+}
+
+
+template<class T>
+bool Binnary_Tree<T>::iterator::operator==(const iterator& other) const{
+	return _current == other._current;
+}
+
+template<class T>
+bool Binnary_Tree<T>::iterator::operator!=(const iterator& other) const {
+	return !(*this == other);
+}
+
+
+
+template<class T>
+Binnary_Tree<T>::iterator Binnary_Tree<T> ::begin() {
+	Tree_Node<T>* tmp = _root;
+	while (tmp->LeftBranch) {
+		tmp = tmp->LeftBranch;
+	}
+	return iterator(tmp);
+}
+
+template<class T>
+Binnary_Tree<T>::iterator Binnary_Tree<T> ::end() {
+	return iterator(nullptr);
+}
+
+template<class T>
+void Binnary_Tree<T>::iterator::pushLeft(Tree_Node<T>* node) {
+	while (node) {
+		_stack.push(node);
+		node = node->LeftBranch;
+	}
+}
+
+template<class T>
+Binnary_Tree<T>::iterator::iterator(Tree_Node<T>* pointer) {
+	pushLeft(pointer);
+	_current = pointer;
+}
+
+template<class T>
+bool Binnary_Tree<T>::iterator::hasNext() {
+	return !_stack.empty();
+}
+
+template<class T>
+T& Binnary_Tree<T>::iterator::next() {
+	Tree_Node<T>* _current = _stack.top();
+	_stack.pop();
+	if (_current->RightBranch) {
+		pushLeft(_current->RightBranch);
+	}
+	return _current->data;
+}

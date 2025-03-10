@@ -37,5 +37,13 @@ int main(){
 	std::cout << '\n';
 	//Tree3.balanceTree();
 	Tree3.print();
+	std::cout << '\n';
+	Binnary_Tree<int> :: iterator current = Tree3.begin();
+	for (auto it = Tree3.begin(); it.hasNext(); ) {
+		std::cout << it.next() << ' ';
+	}
 
+	std::cout << '\n';
+	std::cout << Tree3.count(23);
+	return 0;
 }

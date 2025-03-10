@@ -1,4 +1,5 @@
 #pragma once
+#include <stack>
 
 template<class T>
 struct Tree_Node {
@@ -24,6 +25,7 @@ private:
 	Tree_Node<T>* rotateLeft(Tree_Node<T>* root);
 	Tree_Node<T>* rotateRight(Tree_Node<T>* root);
 	Tree_Node<T>* balanceNode(Tree_Node<T>* root);
+	size_t getCount(Tree_Node<T>* root ,T value);
 public:
 	Binnary_Tree(T root);
 	Binnary_Tree(Binnary_Tree<T>& Tree);
@@ -33,4 +35,22 @@ public:
 	bool erase(T value);
 	Binnary_Tree<T>& operator=(Binnary_Tree<T>& other);
 	void balanceTree();
+	size_t count(T value);
+
+	class iterator {
+	private:
+		std::stack<Tree_Node<T>*> _stack;
+		Tree_Node<T>* _current;
+		void pushLeft(Tree_Node<T>* node);
+	public:
+		iterator(Tree_Node<T>* pointer);
+		T& operator*();
+		T* operator->();
+		bool hasNext();
+		T& next();
+		bool operator==(const iterator& other) const;
+		bool operator!=(const iterator& other) const;
+	};
+	iterator begin();
+	iterator end();
 };
