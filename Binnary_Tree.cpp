@@ -16,6 +16,21 @@ Binnary_Tree<T> ::Binnary_Tree(T root) {
 	_root = new_root;
 }
 
+template<class T>
+void Binnary_Tree<T>::deleteTree(Tree_Node<T>* root) {
+	if (root == nullptr) {
+		return;
+	}
+	deleteTree(root->LeftBranch);
+	deleteTree(root->RightBranch);
+	delete root;
+}
+
+template<class T>
+Binnary_Tree<T> ::~Binnary_Tree() {
+	deleteTree(_root);
+}
+
 
 template<class T>
 Tree_Node<T>* Binnary_Tree<T> ::insertNode(Tree_Node<T>* root, T value) {
@@ -176,8 +191,9 @@ Binnary_Tree<T> ::Binnary_Tree(Binnary_Tree<T>& Tree) {
 
 template<class T>
 Binnary_Tree<T>& Binnary_Tree<T> :: operator=(Binnary_Tree<T>& other) {
-	Binnary_Tree(other);
-	_root = other._root;
+	Binnary_Tree tree(other);
+	_root = tree._root;
+	return *this;
 }
 
 template<class T>

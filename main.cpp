@@ -1,5 +1,5 @@
 #include "iostream"
-#include "Binnary_Tree.cpp"
+#include "func.cpp"
 
 int main(){
 	Binnary_Tree<int> Tree(23);
@@ -45,5 +45,35 @@ int main(){
 
 	std::cout << '\n';
 	std::cout << Tree3.count(23);
+	std::cout << '\n';
+	
+	//measureVectorPerformance(1000);
+	//measureBinaryTreePerformance(1000);
+	//measureVectorPerformance(10000);
+	//measureBinaryTreePerformance(10000);
+	//measureVectorPerformance(100000);
+	//measureBinaryTreePerformance(100000);
+
+
+	Binnary_Tree<int> Tree4 = Tree3;
+	Tree4.erase(100);
+	Tree4.erase(234);
+	std::vector<int> intersectionT4T3 = intersection(Tree3,Tree4);
+	std::cout << '\n';
+	for (auto it = intersectionT4T3.begin(); it != intersectionT4T3.end(); it++) {
+		std::cout << *it << ' ';
+	}
+	Tree4.insert(34234);
+	Tree4.insert(9999);
+	Tree3.insert(11111);
+	std::vector<int> unionT4T3 = treeUnion(Tree3, Tree4);
+	Tree3.print();
+	std::cout << '\n';
+	Tree4.print();
+	std::cout << '\n';
+	for (auto it = unionT4T3.begin(); it != unionT4T3.end(); it++) {
+		std::cout << *it << ' ';
+	}
+	
 	return 0;
 }

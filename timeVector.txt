@@ -1,0 +1,96 @@
+Size: 1000
+Size: 
+Average fill time: 4e-05 seconds
+Average search time: 1e-06 seconds
+Average add/remove time: 2e-06 seconds
+
+Size: 1000
+Size: 
+Average fill time: 4e-05 seconds
+Average search time: 2e-06 seconds
+Average add/remove time: 2e-06 seconds
+
+Size: 10000
+Size: 
+Average fill time: 0.00035 seconds
+Average search time: 1e-05 seconds
+Average add/remove time: 1e-05 seconds
+
+Size: 100000
+Size: 
+Average fill time: 0.00344 seconds
+Average search time: 9.7e-05 seconds
+Average add/remove time: 0.000103 seconds
+
+Size: 1000
+Size: 
+Average fill time: 4e-05 seconds
+Average search time: 1e-06 seconds
+Average add/remove time: 2e-06 seconds
+
+Size: 10000
+Size: 
+Average fill time: 0.00036 seconds
+Average search time: 1e-05 seconds
+Average add/remove time: 1e-05 seconds
+
+Size: 100000
+Size: 
+Average fill time: 0.00427 seconds
+Average search time: 9.3e-05 seconds
+Average add/remove time: 0.0001 seconds
+
+Size: 1000
+Size: 
+Average fill time: 4e-05 seconds
+Average search time: 1e-06 seconds
+Average add/remove time: 2e-06 seconds
+
+Size: 10000
+Size: 
+Average fill time: 0.00032 seconds
+Average search time: 8e-06 seconds
+Average add/remove time: 1e-05 seconds
+
+Size: 100000
+Size: 
+Average fill time: 0.00355 seconds
+Average search time: 0.00011 seconds
+Average add/remove time: 0.000111 seconds
+
+Size: 1000
+Size: 
+Average fill time: 3e-05 seconds
+Average search time: 0 seconds
+Average add/remove time: 2e-06 seconds
+
+Size: 10000
+Size: 
+Average fill time: 0.00036 seconds
+Average search time: 9e-06 seconds
+Average add/remove time: 1e-05 seconds
+
+Size: 100000
+Size: 
+Average fill time: 0.00395 seconds
+Average search time: 0.000148 seconds
+Average add/remove time: 0.000113 seconds
+
+Size: 1000
+Size: 
+Average fill time: 4e-05 seconds
+Average search time: 1e-06 seconds
+Average add/remove time: 2e-06 seconds
+
+Size: 10000
+Size: 
+Average fill time: 0.00034 seconds
+Average search time: 9e-06 seconds
+Average add/remove time: 1e-05 seconds
+
+Size: 100000
+Size: 
+Average fill time: 0.00383 seconds
+Average search time: 0.0001 seconds
+Average add/remove time: 0.000109 seconds
+
