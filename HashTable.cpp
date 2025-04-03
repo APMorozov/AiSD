@@ -38,6 +38,18 @@ HashTable<Key, Value, Conteiner> ::HashTable(size_t size) {
 }
 
 template<class Key, class Value, class Conteiner>
+HashTable<Key, Value, Conteiner> ::HashTable(HashTable<Key, Value, Conteiner>& table) {
+	_buckets = new Conteiner[table._default_size];
+	_current_size = table._current_size;
+	_default_size = table._default_size;
+	for (size_t i{}; i < table._default_size; ++i) {
+		for (auto other_it : table._buckets[i]) {
+			_buckets[i].push_back(Node<Key, Value>(other_it.key, other_it.value));
+		}
+	}
+}
+
+template<class Key, class Value, class Conteiner>
 bool HashTable<Key, Value, Conteiner> ::insert(Key key, const Value& value) {
 	size_t index = shiftHash(key);
 	for (auto it: _buckets[index]) {
@@ -47,6 +59,7 @@ bool HashTable<Key, Value, Conteiner> ::insert(Key key, const Value& value) {
 	}
 	//Node<Key, Value>* nNode = new Node(key, value);
 	_buckets[index].push_back(Node<Key,Value>(key, value));
+	_current_size++;
 }
 
 
