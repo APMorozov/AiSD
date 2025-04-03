@@ -38,14 +38,24 @@ HashTable<Key, Value, Conteiner> ::HashTable(size_t size) {
 }
 
 template<class Key, class Value, class Conteiner>
-HashTable<Key, Value, Conteiner> ::HashTable(HashTable<Key, Value, Conteiner>& table) {
-	_buckets = new Conteiner[table._default_size];
-	_current_size = table._current_size;
-	_default_size = table._default_size;
-	for (size_t i{}; i < table._default_size; ++i) {
-		for (auto other_it : table._buckets[i]) {
-			_buckets[i].push_back(Node<Key, Value>(other_it.key, other_it.value));
+HashTable<Key, Value, Conteiner> ::HashTable(const HashTable<Key, Value, Conteiner>& table) {
+	if (this != &table) {
+		_buckets = new Conteiner[table._default_size];
+		_current_size = table._current_size;
+		_default_size = table._default_size;
+		for (size_t i{}; i < table._default_size; ++i) {
+			for (auto other_it : table._buckets[i]) {
+				_buckets[i].push_back(Node<Key, Value>(other_it.key, other_it.value));
+			}
 		}
+	}
+}
+
+template<class Key, class Value, class Conteiner>
+HashTable<Key, Value, Conteiner> :: ~HashTable() {
+	if (_buckets != nullptr) {
+		delete[] _buckets;
+		_buckets = nullptr;
 	}
 }
 
@@ -57,7 +67,6 @@ bool HashTable<Key, Value, Conteiner> ::insert(Key key, const Value& value) {
 			return true;
 		}
 	}
-	//Node<Key, Value>* nNode = new Node(key, value);
 	_buckets[index].push_back(Node<Key,Value>(key, value));
 	_current_size++;
 }
@@ -72,4 +81,35 @@ void HashTable<Key, Value, Conteiner> ::print() {
 		}
 		std::cout << '\n';
 	}
+}
+
+
+template<class Key, class Value, class Conteiner>
+HashTable<Key, Value, Conteiner>& HashTable<Key, Value, Conteiner> :: operator=(const HashTable<Key, Value, Conteiner>& table) {
+	if (this == &table) {
+		return *this;
+	}
+	delete[] _buckets;
+	_buckets = new Conteiner[table._default_size];
+	_current_size = table._current_size;
+	_default_size = table._default_size;
+	for (size_t i = 0; i < _default_size; ++i) {
+		for (const auto& it : table._buckets[i]) {
+			_buckets[i].push_back(Node<Key, Value>(it.key, it.value));
+		}
+	}
+	return *this;
+}
+
+template<class Key, class Value, class Conteiner>
+void HashTable<Key, Value, Conteiner> ::insert_of_assign(Key key, Value& value) {
+	size_t index = shiftHash(key);
+	for (auto& it : _buckets[index]) {
+		if (it.key == key) {
+			it.value = value;
+			return;
+		}
+	}
+	_buckets[index].push_back(Node<Key, Value>(key, value));
+	_current_size++;
 }

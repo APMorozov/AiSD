@@ -23,6 +23,14 @@ int main() {
 	std::cout << '\n' << table3.shiftHash("abb432a") << '\n';
 	std::cout << "Hello " << '\n';
 	table3.print();
+	HashTable<std::string, int, std::vector<Node<std::string, int>>> table4(10);
+	table4 = table3;
+	std::cout << "Hello3 " << '\n';
+	int a = 345605;
+	table3.insert_of_assign(std::string("ala"), a);
+	table3.insert_of_assign(std::string("abb432a"), a);
+	table3.print();
+
 
 	return 0;
 }

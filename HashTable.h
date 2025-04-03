@@ -19,9 +19,13 @@ public:
 	size_t shiftHash(const Key key);
 	HashTable();
 	HashTable(size_t size);
-	HashTable(HashTable& table);
+	HashTable(const HashTable& table);
+	~HashTable();
 	bool insert(Key key, const Value& value);
 	void print();
+	void insert_of_assign(Key key, Value& value);
+
+	HashTable& operator=(const HashTable& table);
 
 };
 
