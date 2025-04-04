@@ -24,7 +24,7 @@ public:
 	bool insert(Key key, const Value& value);
 	void print();
 	void insert_of_assign(Key key, Value& value);
-
+	bool conteins(Value& value);
 	HashTable& operator=(const HashTable& table);
 
 };

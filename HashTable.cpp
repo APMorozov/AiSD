@@ -113,3 +113,15 @@ void HashTable<Key, Value, Conteiner> ::insert_of_assign(Key key, Value& value) 
 	_buckets[index].push_back(Node<Key, Value>(key, value));
 	_current_size++;
 }
+
+template<class Key, class Value, class Conteiner>
+bool HashTable<Key, Value, Conteiner> ::conteins(Value& value) {
+	for (int i{}; i < _default_size; ++i) {
+		for (auto it : _buckets[i]) {
+			if (it.value == value) {
+				return true;
+			}
+		}
+	}
+	return false;
+}

@@ -26,10 +26,14 @@ int main() {
 	HashTable<std::string, int, std::vector<Node<std::string, int>>> table4(10);
 	table4 = table3;
 	std::cout << "Hello3 " << '\n';
-	int a = 345605;
+	int a = 227;
+	int b = 229;
 	table3.insert_of_assign(std::string("ala"), a);
 	table3.insert_of_assign(std::string("abb432a"), a);
 	table3.print();
+	if (table3.conteins(a)) {
+		std::cout << table3.conteins(b);
+	}
 
 
 	return 0;
