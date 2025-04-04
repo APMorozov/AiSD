@@ -32,7 +32,10 @@ int main() {
 	table3.insert_of_assign(std::string("abb432a"), a);
 	table3.print();
 	if (table3.conteins(a)) {
-		std::cout << table3.conteins(b);
+		std::cout << table3.conteins(b) << '\n';
+	}
+	if (table3.search(std::string("ala")) != nullptr) {
+		std::cout << "yes " << *table3.search(std::string("ala")) << '\n';
 	}
 
 

@@ -125,3 +125,14 @@ bool HashTable<Key, Value, Conteiner> ::conteins(Value& value) {
 	}
 	return false;
 }
+
+template<class Key, class Value, class Conteiner>
+Value* HashTable<Key, Value, Conteiner> ::search(Key key) {
+	size_t index = shiftHash(key);
+	for (auto& it : _buckets[index]) {
+		if (it.key == key) {
+			return &it.value;
+		}
+	}
+	return nullptr;
+}

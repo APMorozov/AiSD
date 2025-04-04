@@ -25,6 +25,7 @@ public:
 	void print();
 	void insert_of_assign(Key key, Value& value);
 	bool conteins(Value& value);
+	Value* search(Key key);
 	HashTable& operator=(const HashTable& table);
 
 };
