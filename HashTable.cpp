@@ -7,6 +7,16 @@ std::ostream& operator<<(std::ostream& stream, const Node<Key, Value>& elm) {
 	return stream;
 }
 
+template<class Key, class Value>
+bool operator ==(const Node<Key, Value>& lhs, const Node<Key, Value>& rhs) {
+	if ((lhs.key == rhs.key) && (lhs.value == rhs.value)) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
 template<class Key, class Value, class Conteiner>
 size_t HashTable<Key, Value, Conteiner> :: shiftHash(const Key key) {
 	if constexpr (std::is_same_v<Key, std::string>) {
@@ -135,4 +145,30 @@ Value* HashTable<Key, Value, Conteiner> ::search(Key key) {
 		}
 	}
 	return nullptr;
+}
+
+
+template<class Key, class Value, class Conteiner>
+bool HashTable<Key, Value, Conteiner> ::erase(Key key) {
+	size_t index = shiftHash(key);
+	auto& container = _buckets[index];
+	auto it = std::find_if(
+		container.begin(),
+		container.end(),
+		[&key](const Node<std::string, int>& node) {
+			return node.key == key;
+		}
+	);
+
+	if (it != container.end()) {
+		container.erase(it);
+		return true;
+	}
+	return false;
+}
+
+template<class Key, class Value, class Conteiner>
+int HashTable<Key, Value, Conteiner> ::count(Key key) {
+	size_t index = shiftHash(key);
+	return end(_buckets[index]) - begin(_buckets[index]); 
 }

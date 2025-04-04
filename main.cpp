@@ -37,6 +37,11 @@ int main() {
 	if (table3.search(std::string("ala")) != nullptr) {
 		std::cout << "yes " << *table3.search(std::string("ala")) << '\n';
 	}
+	if (table3.erase("ala")) {
+		std::cout << "yyyyes" << '\n';
+		table3.print();
+	}
+	std::cout << '\n' << table3.count(std::string("abb432a"));
 
 
 	return 0;

@@ -26,9 +26,14 @@ public:
 	void insert_of_assign(Key key, Value& value);
 	bool conteins(Value& value);
 	Value* search(Key key);
+	bool erase(Key key);
+	int count(Key key);
 	HashTable& operator=(const HashTable& table);
 
 };
 
 template<class Key, class Value>
 std:: ostream& operator<<(std::ostream& stream, const Node<Key, Value>& elm);
+
+template<class Key, class Value>
+bool operator==(const Node<Key, Value>& lhs, const Node<Key, Value>& rhs);
