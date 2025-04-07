@@ -1,7 +1,9 @@
 #include <iostream>
 #include <list>
 #include <vector>
-#include "HashTable.cpp"
+#include "func.cpp"
+
+
 
 int main() {
 	Node<int, int> node0(1, 5);
@@ -45,6 +47,15 @@ int main() {
 	HashTable<std::string, size_t, std::vector<Node<std::string, size_t>>> table5(10,true);
 	std::cout << '\n' << "Table 5" << '\n';
 	table5.print();
+	std::string s = readStr();
+	std::cout << "Get string " << s << '\n';
+	size_t oldHash = table5.pirsonHash(readStr(), 10);
+	if (comparisonStrHash(oldHash, 10)) {
+		std::cout << "True" << '\n';
+	}
+	else {
+		std::cout << "False" << '\n';
+	}
 
 	return 0;
 }
