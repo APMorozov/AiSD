@@ -3,7 +3,6 @@
 #include <vector>
 #include "HashTable.cpp"
 
-
 int main() {
 	Node<int, int> node0(1, 5);
 	HashTable<int, int, std::list<Node<int, int>>> table0(10);
@@ -42,7 +41,10 @@ int main() {
 		table3.print();
 	}
 	std::cout << '\n' << table3.count(std::string("abb432a"));
-
+	std::cout << '\n' << (char)48;
+	HashTable<std::string, size_t, std::vector<Node<std::string, size_t>>> table5(10,true);
+	std::cout << '\n' << "Table 5" << '\n';
+	table5.print();
 
 	return 0;
 }

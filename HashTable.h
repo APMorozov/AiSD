@@ -15,11 +15,13 @@ private:
 	size_t _current_size;
 	size_t _default_size;
 	//size_t shiftHash(const Key key);
+	size_t pirsonHash(std::string& x, size_t tableSize);
 public:
 	size_t shiftHash(const Key key);
 	HashTable();
 	HashTable(size_t size);
 	HashTable(const HashTable& table);
+	HashTable(size_t size, bool is_random);
 	~HashTable();
 	bool insert(Key key, const Value& value);
 	void print();
