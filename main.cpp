@@ -27,4 +27,20 @@ int main() {
 		std::cout << "g2 Has" << std::endl;
 	}
 	std::cout << "Hello world" << std::endl;
+
+	HashTable<std::string, size_t> h1(10, true);
+	h1.print();
+
+	std::cout << std::endl << std::endl << std::endl;
+	for (size_t out_idx = 0; out_idx < h1.getSize(); ++out_idx) {
+		std::cout << out_idx << ")";
+		for (auto it = h1[out_idx].begin(); it != h1[out_idx].end(); ++it) {
+			std::cout << " Data: " << *it;
+		}
+		std::cout << std::endl;
+	}
+
+
+	g1.remove_vertex(v1);
+
 }

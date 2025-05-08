@@ -49,6 +49,15 @@ std::ostream& operator<<(std::ostream& stream, const Edge<Value, Distance>& edge
 }
 
 template<class Value, class Distance>
+std::ostream& operator<<(std::ostream& stream, const Vertex<Value, Distance>& vertex) {
+    stream << "Value: " << vertex.value;
+    for (auto it = vertex.Edges->begin(); it != vertex.Edges->end(); ++it) {
+        stream << " Edge (" << it->adjacentVertex->value << ", " << it->weight <<")";
+    }
+    return stream;
+}
+
+template<class Value, class Distance>
 class Graph {
 private:
     HashTable<Value, Vertex<Value, Distance>, std::list<Node<Value, Vertex<Value, Distance>>>> _verteces;
@@ -75,7 +84,14 @@ public:
 
     bool remove_vertex(const Vertex<Value, Distance>& vertex) {
         if (this->has_vertex(vertex)) {
-
+            for (size_t outer_idx = 0; outer_idx < _verteces.getSize(); ++outer_idx) {
+                std::cout << outer_idx << " ";
+                for (auto inner_it = _verteces[outer_idx].begin(); inner_it != _verteces[outer_idx].end(); ++inner_it) {
+                    std::cout << *inner_it << " ";
+                }
+                std::cout << std::endl;
+            }
         }
+        return true;
     }
 };

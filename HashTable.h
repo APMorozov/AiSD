@@ -232,4 +232,12 @@ public:
         }
         return *this;
     }
+
+    const Container& operator[](size_t index) const{
+        return _buckets[index];
+    }
+
+    size_t getSize() {
+        return _default_size;
+    }
 };
