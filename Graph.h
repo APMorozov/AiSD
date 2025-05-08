@@ -82,16 +82,45 @@ public:
         return true;
     }
 
+    void print() {
+        for (size_t outer_idx = 0; outer_idx < _verteces.getSize(); ++outer_idx) {
+            std::cout << outer_idx << " ";
+            for (auto inner_it = _verteces[outer_idx].begin(); inner_it != _verteces[outer_idx].end(); ++inner_it) {
+                std::cout << *inner_it << " ";
+            }
+            std::cout << std::endl;
+        }
+    }
+
     bool remove_vertex(const Vertex<Value, Distance>& vertex) {
         if (this->has_vertex(vertex)) {
             for (size_t outer_idx = 0; outer_idx < _verteces.getSize(); ++outer_idx) {
-                std::cout << outer_idx << " ";
                 for (auto inner_it = _verteces[outer_idx].begin(); inner_it != _verteces[outer_idx].end(); ++inner_it) {
-                    std::cout << *inner_it << " ";
+                    auto set_it_end = inner_it->value.Edges->end();
+                    for (auto set_it = inner_it->value.Edges->begin(); set_it != set_it_end;) {
+                        std::cout << " " << *set_it << " ";
+                        if (vertex.value == set_it->adjacentVertex->value) {
+                            set_it = inner_it->value.Edges->erase(set_it);
+                        }
+                        else {
+                            ++set_it;
+                        }
+                    }
                 }
-                std::cout << std::endl;
+
             }
+            _verteces.erase(vertex.value);
+            return true;
         }
-        return true;
+        return false;
+    }
+
+    void add_edge(Vertex<Value, Distance>& from, Vertex<Value, Distance>& to,Distance distance) {
+        if (this->has_vertex(from) && this->has_vertex(to)) {
+            Vertex<Value, Distance>* data =  _verteces.search(from.value);
+            Edge<Value, Distance> new_edge(&to, distance);
+            data->Edges->insert(new_edge);
+            _verteces.insert_or_assign(from.value, *data);
+        }
     }
 };

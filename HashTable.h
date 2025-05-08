@@ -23,7 +23,7 @@ struct Node {
 
 template<class Key, class Value>
 std::ostream& operator<<(std::ostream& stream, const Node<Key, Value>& elm) {
-    stream << elm.key << " : " << elm.value;
+        stream << elm.key << " : " << elm.value;
     return stream;
 }
 

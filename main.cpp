@@ -29,7 +29,6 @@ int main() {
 	std::cout << "Hello world" << std::endl;
 
 	HashTable<std::string, size_t> h1(10, true);
-	h1.print();
 
 	std::cout << std::endl << std::endl << std::endl;
 	for (size_t out_idx = 0; out_idx < h1.getSize(); ++out_idx) {
@@ -39,8 +38,17 @@ int main() {
 		}
 		std::cout << std::endl;
 	}
+	v2.Edges->insert(Edge<int,int>(&v1,100));
 
-
+	g1.add_vertex(v2);
+	std::cout << std::endl << std::endl << std::endl;
+	g1.print();
 	g1.remove_vertex(v1);
+	std::cout << std::endl << std::endl << std::endl;
+	g1.print();
 
+	std::cout << std::endl << std::endl << std::endl;
+	g1.add_vertex(v1);
+	g1.add_edge(v1,v2,1000);
+	g1.print();
 }
