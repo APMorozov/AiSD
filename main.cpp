@@ -1,4 +1,4 @@
-#include "Graph.cpp"
+#include "Graph.h"
 #include <iostream>
 
 int main() {
@@ -6,12 +6,25 @@ int main() {
 	Edge<int, int> e1(&v1, 20);
 	Vertex<int, int> v2(2);
 	Edge<int, int> e2(&v2, 25);
-	v1.Edges.insert(e1);
-	v1.Edges.insert(e2);
-	for (std::set<Edge<int, int>> ::iterator it = v1.Edges.begin(); it != v1.Edges.end(); ++it) {
+	v1.Edges->insert(e1);
+	v1.Edges->insert(e2);
+	for (std::set<Edge<int, int>> ::iterator it = v1.Edges->begin(); it != v1.Edges->end(); ++it) {
 		std::cout << *it << std::endl;
 	}
 	std::cout << e1 << std::endl;
 
+	size_t size = 10;
+	Graph<int, int> g1(size);
+	if (g1.add_vertex(v1)) {
+		std::cout << "Inserted" << std::endl;
+	}
+	if (g1.has_vertex(v1)) {
+		std::cout << "g1 Has" << std::endl;
+	}
+
+	Graph<int, int> g2(g1);
+	if (g2.has_vertex(v1)) {
+		std::cout << "g2 Has" << std::endl;
+	}
 	std::cout << "Hello world" << std::endl;
 }
