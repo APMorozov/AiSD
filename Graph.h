@@ -6,7 +6,7 @@
 #include <functional>
 #include <queue>
 #include <iostream>
-#include "HashTable.h"  // Используйте относительные пути
+#include "HashTable.h"
 
 template<class Value, class Distance = double>
 struct Vertex;
@@ -54,7 +54,6 @@ std::ostream& operator<<(std::ostream& stream, const Edge<Value, Distance>& edge
 
 template<class Value, class Distance>
 std::ostream& operator<<(std::ostream& stream, const Vertex<Value, Distance>& vertex) {
-    //stream << " " << vertex.value;
     for (auto it = vertex.Edges->begin(); it != vertex.Edges->end(); ++it) {
         stream << " Edge (" << it->adjacentVertex->value << ", " << it->weight <<")";
     }

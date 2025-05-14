@@ -51,17 +51,18 @@ int main() {
 
     auto remote = find_most_remote_clinic(cityMap);
     std::cout << "8. Most remote clinic: " << remote.value << std::endl;
-  
- 
+    
+     std::cout << "9. Checking is connected graph: "
+        << (cityMap.has_vertex(clinic2) ? "Yes" : "No") << std::endl;
 
     cityMap.remove_edge(clinic1, clinic3);
-    std::cout << "9. Removed connection between Central and South" << std::endl;
+    std::cout << "10. Removed connection between Central and South" << std::endl;
     std::cout << std::endl;
     cityMap.print();
     std::cout << std::endl;
 
     cityMap.remove_vertex(clinic2);
-    std::cout << "10. Removed North Clinic from the map" << std::endl;
+    std::cout << "11. Removed North Clinic from the map" << std::endl;
     std::cout << std::endl;
     cityMap.print();
     std::cout << std::endl;

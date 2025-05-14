@@ -3,7 +3,7 @@
 template<class Value, class Distance = double>
 Vertex<Value, Distance> find_most_remote_clinic(const Graph<Value, Distance>& graph) {
     if (graph.order() == 0) {
-        throw std::runtime_error("Graph is empty");
+        throw ("Graph is empty");
     }
 
     Vertex<Value, Distance> most_remote;
@@ -31,7 +31,7 @@ Vertex<Value, Distance> find_most_remote_clinic(const Graph<Value, Distance>& gr
         });
 
     if (!found) {
-        throw std::runtime_error("No edges found in graph");
+        throw ("No edges found in graph");
     }
 
     return most_remote;
