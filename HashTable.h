@@ -106,6 +106,8 @@ public:
         }
     }
 
+
+
     size_t pirsonHash(std::string& s, size_t tableSize) const {
         static const unsigned char T[256] = {
             98,  6, 85,150, 36, 23,112,164,135,207,169,  5, 26, 64,165,219,
@@ -181,9 +183,9 @@ public:
         return false;
     }
 
-    Value* search(Key key) {
+    const Value* search(Key key) const {
         size_t index = shiftHash(key);
-        for (auto& it : _buckets[index]) {
+        for (const auto& it : _buckets[index]) {
             if (it.key == key) {
                 return &it.value;
             }
@@ -237,7 +239,11 @@ public:
         return _buckets[index];
     }
 
-    size_t getSize() {
+    size_t getDefaultSize() const{
         return _default_size;
+    }
+
+    size_t getCurrentSize() const {
+        return _current_size;
     }
 };

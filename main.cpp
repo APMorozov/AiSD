@@ -1,54 +1,68 @@
-#include "Graph.h"
+#include "func.cpp"
 #include <iostream>
 
 int main() {
-	Vertex<int, int> v1(1);
-	Edge<int, int> e1(&v1, 20);
-	Vertex<int, int> v2(2);
-	Edge<int, int> e2(&v2, 25);
-	v1.Edges->insert(e1);
-	v1.Edges->insert(e2);
-	for (std::set<Edge<int, int>> ::iterator it = v1.Edges->begin(); it != v1.Edges->end(); ++it) {
-		std::cout << *it << std::endl;
-	}
-	std::cout << e1 << std::endl;
+    Graph<std::string, double> cityMap(5);
+    std::cout << "1. Created empty city graph" << std::endl;
 
-	size_t size = 10;
-	Graph<int, int> g1(size);
-	if (g1.add_vertex(v1)) {
-		std::cout << "Inserted" << std::endl;
-	}
-	if (g1.has_vertex(v1)) {
-		std::cout << "g1 Has" << std::endl;
-	}
+    Vertex<std::string, double> clinic1("Central Hospital");
+    Vertex<std::string, double> clinic2("North Clinic");
+    Vertex<std::string, double> clinic3("South Clinic");
 
-	Graph<int, int> g2(g1);
-	if (g2.has_vertex(v1)) {
-		std::cout << "g2 Has" << std::endl;
-	}
-	std::cout << "Hello world" << std::endl;
+    cityMap.add_vertex(clinic1);
+    cityMap.add_vertex(clinic2);
+    cityMap.add_vertex(clinic3);
+    std::cout << "2. Added 3 clinics to the map" << std::endl;
+    std::cout << std::endl;
+    cityMap.print();
+    std::cout << std::endl;
 
-	HashTable<std::string, size_t> h1(10, true);
+    cityMap.add_edge(clinic1, clinic2, 3.5);
+    cityMap.add_edge(clinic1, clinic3, 2.6);
+    cityMap.add_edge(clinic2, clinic1, 2.2);
+    cityMap.add_edge(clinic3, clinic1, 2.9);
+    cityMap.add_edge(clinic2, clinic3, 13);
 
-	std::cout << std::endl << std::endl << std::endl;
-	for (size_t out_idx = 0; out_idx < h1.getSize(); ++out_idx) {
-		std::cout << out_idx << ")";
-		for (auto it = h1[out_idx].begin(); it != h1[out_idx].end(); ++it) {
-			std::cout << " Data: " << *it;
-		}
-		std::cout << std::endl;
-	}
-	v2.Edges->insert(Edge<int,int>(&v1,100));
+    std::cout << "3. Created connections between clinics" << std::endl;
+    std::cout << std::endl;
+    cityMap.print();
+    std::cout << std::endl;
 
-	g1.add_vertex(v2);
-	std::cout << std::endl << std::endl << std::endl;
-	g1.print();
-	g1.remove_vertex(v1);
-	std::cout << std::endl << std::endl << std::endl;
-	g1.print();
 
-	std::cout << std::endl << std::endl << std::endl;
-	g1.add_vertex(v1);
-	g1.add_edge(v1,v2,1000);
-	g1.print();
+    std::cout << "4. Checking if 'North Clinic' exists: "
+        << (cityMap.has_vertex(clinic2) ? "Yes" : "No") << std::endl;
+
+    Edge<std::string, double> testEdge(&clinic2, 3.5);
+    std::cout << "5. Checking connection from South to North: "
+        << (cityMap.has_edge(clinic3, testEdge) ? "Exists" : "Missing") << std::endl;
+
+    auto path = cityMap.shortest_path(clinic1, clinic3);
+    std::cout << "6. Shortest path from Central to South:" << std::endl;
+    for (const auto& edge : path) {
+        std::cout << "   - " << edge.adjacentVertex->value << " (" << edge.weight << ")" << std::endl;
+    }
+
+    std::cout << "7. Walking through all clinics:" << std::endl;
+    cityMap.walk(clinic1, [](const Vertex<std::string, double>& v) {
+        std::cout << "   Visited: " << v.value << std::endl;
+
+    });
+
+
+    auto remote = find_most_remote_clinic(cityMap);
+    std::cout << "8. Most remote clinic: " << remote.value << std::endl;
+  
+ 
+
+    cityMap.remove_edge(clinic1, clinic3);
+    std::cout << "9. Removed connection between Central and South" << std::endl;
+    std::cout << std::endl;
+    cityMap.print();
+    std::cout << std::endl;
+
+    cityMap.remove_vertex(clinic2);
+    std::cout << "10. Removed North Clinic from the map" << std::endl;
+    std::cout << std::endl;
+    cityMap.print();
+    std::cout << std::endl;
 }
